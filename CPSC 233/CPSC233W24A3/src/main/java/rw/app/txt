@@ -1,0 +1,52 @@
+for (int i = 1; i < rowss+1; i++) {
+            for (int j = 1; j < column+1; j++) {
+                // Add placeholder nodes, you can add any type of node you need here
+                Entity entity = battle.getEntity(i-1,j-1);
+                if(entity!=null) {
+                    char symbol = entity.getSymbol();
+                    String myString = String.valueOf(symbol);
+                    Button button = new Button(myString);
+                    mygrid.add(button, j, i);
+                }
+                else{
+                    Button button = new Button(" . ");
+                    mygrid.add(button, j, i);
+                }
+
+            }
+
+
+       // Add top boundary
+        for (int j = 0; j < columns; j++) {
+            Button boundaryButton = new Button("#");
+            mygrid.add(boundaryButton, j, 0);
+        }
+
+       // Add left and right boundaries and fill the map
+        for (int i = 1; i < rows - 1; i++) {
+            Button leftBoundaryButton = new Button("#");
+            mygrid.add(leftBoundaryButton, 0, i);
+
+            for (int j = 1; j < columns - 1; j++) {
+                Entity entity = battle.getEntity(i-1, j-1);
+                if(entity != null) {
+                    char symbol = entity.getSymbol();
+                    String myString = String.valueOf(symbol);
+                    Button button = new Button(myString);
+                    mygrid.add(button, j, i);
+                }
+                else {
+                    Button button = new Button(" . ");
+                    mygrid.add(button, j, i);
+                }
+            }
+
+            Button rightBoundaryButton = new Button("#");
+            mygrid.add(rightBoundaryButton, columns - 1, i);
+        }
+
+        // Add bottom boundary
+        for (int j = 0; j < columns; j++) {
+            Button boundaryButton = new Button("#");
+            mygrid.add(boundaryButton, j, rows - 1);
+        }
